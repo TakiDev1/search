@@ -1,1 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            display: flex;
+            flex-direction: row;
+        }
+        #sidebar {
+            background-color: black;
+            padding: 20px;
+            width: 150px;
+            height: 100%; /* Stretch down the whole page */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 0 20px 5px #1a75bb;
+            transition: left 0.3s;
+            left: -200px;
+            position: fixed;
+            top: 0;
+        }
+        #content {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+        #search-box {
+            width: 100%;
+            max-width: 100%;
+            margin-right: 0;
+            border-radius: 10px; /* Add border-radius for curves */
+            box-shadow: 0 0 10px #000;
+            transition: margin-left 0.3s, margin-right 0.3s;
+            flex-grow: 1;
+        }
+        #options {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #options a {
+            margin: 10px;
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        #options a:hover {
+            background-color: #ddd;
+        }
+        
+        /* Dark theme styles */
+        .dark-theme {
+            background-color: white;
+            color: white;
+        }
+        /* Toggle button styles */
+        .toggle-container {
+            text-align: center;
+        }
+        .toggle-label {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: black;
+        }
+        .toggle-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .toggle-button {
+            width: 50px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px;
+            transition: background-color 0.3s;
+        }
+        .toggle-button .ball {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: #e74c3c; /* Red background color */
+            transition: transform 0.3s;
+        }
+        .toggle-button.on .ball {
+            transform: translateX(22px);
+            background-color: #2ecc71; /* Green background color when active */
+        }
+        .toggle-button.on + h1 {
+            color: #000; /* Change text color to black when dark mode is off */
+        }
+        .dark-theme h1,
+        .dark-theme p,
+        .dark-theme a {
+            color: black;
+        }
+        .dark-theme .toggle-label {
+            color: white;
+        }
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .menu-button .line {
+            width: 30px;
+            height: 4px;
+            background-color: #fff;
+            border-radius: 2px;
+            margin: 4px 0;
+            
+        }
+       h2 {
+         color: white;
+       }
+    </style>
+</head>
+  <script src="//code.tidio.co/s5kvf9fnwishszsvpfwsi3yzgput2tnu.js" async></script>
+<body>
+    <div id="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="manage.html">Settings</a></li>
+            <li><a href="tickets.html">Tickets</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+            <li id="logout"><a href="/login.html">Logout</a></li>
+        </ul>
+    </div>
+  
+    <div id="content">
+        <h1>Welcome to the Admin Panel</h1>
+        <p>Select an option from the sidebar to get started.</p>
+    </div>
+
+  <div id="toggle-button" class="menu-button">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+  <script>
+    const toggleButton = document.getElementById('toggle-button');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+
+        toggleButton.addEventListener('click', () => {
+            // Toggle the sidebar by changing its left position
+            if (sidebar.style.left === '0px' || sidebar.style.left === '') {
+                sidebar.style.left = '-250px'; // Hide the sidebar
+                 // Reset content margin-left
+            } else {
+                sidebar.style.left = '0px'; // Show the sidebar
+                 // Adjust content margin-left
+            }
+        });
+  </script>
+</body>
+</html>
 
