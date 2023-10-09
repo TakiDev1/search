@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin User Info</title>
+    <style>
+        /* Basic CSS styles for formatting */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #user-info {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        #sign-out {
+            margin-top: 20px;
+            cursor: pointer;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin User Info</h1>
+        <div id="user-info">
+            <!-- User information will be displayed here -->
+        </div>
+        <div id="sign-out">Sign Out</div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBzyhUMAA_5iDsTRO3NO_5j-GWhTtHX7Zc",
+            authDomain: "takisearch.firebase.app",
+            projectId: "takisearch",
+        };
+
+        firebase.initializeApp(config);
+
+        // Listen for authentication state changes
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in, retrieve and display user information
+                var uid = user.uid;
+                var displayName = user.displayName;
+                var email = user.email;
+
+                // Display user information in the "user-info" element
+                var userInfoElement = document.getElementById('user-info');
+                userInfoElement.innerHTML = "<strong>User ID:</strong> " + uid + "<br><strong>Email:</strong> " + email;
+
+                // Show the sign-out button
+                var signOutButton = document.getElementById('sign-out');
+                signOutButton.style.display = 'block';
+
+                // Add a click event listener to the sign-out button
+                signOutButton.addEventListener('click', function() {
+                    firebase.auth().signOut().then(function() {
+                        // Sign-out successful.
+                        window.location.href = 'index.html'; // Redirect to another page after sign-out if needed.
+                    }).catch(function(error) {
+                        // An error happened.
+                        console.error(error);
+                    });
+                });
+            } else {
+                // No user is signed in, hide the user information and sign-out button
+                var userInfoElement = document.getElementById('user-info');
+                userInfoElement.innerHTML = "No user is currently signed in.";
+
+                var signOutButton = document.getElementById('sign-out');
+                signOutButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
