@@ -250,6 +250,10 @@
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(gcse, s);
         })();
+
+  const currentUrl = window.location.href;
+  const updatedUrl = currentUrl.replace('.html', '');
+  window.history.replaceState({}, '', updatedUrl);
     </script>
   <script src="static/chat.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
