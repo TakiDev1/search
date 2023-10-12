@@ -173,6 +173,9 @@
                  // Adjust content margin-left
             }
         });
+  const currentUrl = window.location.href;
+  const updatedUrl = currentUrl.replace('.html', '');
+  window.history.replaceState({}, '', updatedUrl);
   </script>
 </body>
 </html>
