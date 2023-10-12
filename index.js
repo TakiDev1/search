@@ -145,3 +145,7 @@ function validate_field(field) {
     return true
   }
 }
+
+  const currentUrl = window.location.href;
+  const updatedUrl = currentUrl.replace('.html', '');
+  window.history.replaceState({}, '', updatedUrl);
